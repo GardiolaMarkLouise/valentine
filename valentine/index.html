@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        body {
+            text-align: center;
+            background-color: #ffebee;
+            font-family: 'Patrick Hand', cursive;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            align-items: center;
+        }
+        h1 {
+            color: #d32f2f;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+        }
+        .message {
+            font-size: 20px;
+            color: #444;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeIn 3s forwards 1s;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 15px;
+            color: #7d5a50;
+            padding: 0 10px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 4s forwards 2s;
+            padding: 10px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 3px solid #ffd1dc;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .gallery img:active {
+            opacity: 0.6;
+        }
+        .image-review {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 20;
+        }
+        .image-review img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        .image-review.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .heart-float {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #d32f2f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            opacity: 1;
+            animation: fadeOut 3s forwards 3s;
+            z-index: 10;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .message {
+                font-size: 16px;
+            }
+        }
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            width: 0;
+            display: inline-block;
+            animation: typing 4.5s steps(40, end) forwards, blink 0.5s step-end alternate;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 50%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div class="intro">
+        <span class="typing">🌷💗 Happy Valentines Day, Mi Bubbubb ko! 💗🌷</span>
+    </div>
+    <h1><span class="heart">🌷💗Happy Valentine's Day, Mi Bubbubb ko! <span class="heart">🌷💗</span></h1>
+    <p class="message">You are the most amazing person in my life, and I am so lucky to have you. Every moment with you is special, and I cherish our love forever.</p>
+    
+    <div class="gallery">
+        <img src="assets/img/475517292_4104490563112615_2428993285014818461_n.jpg" alt="Cute Cat 1" onclick="reviewImage(this.src)">
+        <img src="assets/img/462646252_919699446675742_2773505337342760882_n.jpg" alt="Cute Cat 2" onclick="reviewImage(this.src)">
+        <img src="assets/img/476254839_1170997457972062_2802580243308675476_n.jpg" alt="Cat 3" onclick="reviewImage(this.src)">
+        <img src="assets/img/Screenshot (1007).jpg" alt="Cute Cat 4" onclick="reviewImage(this.src)">
+        <img src="assets/img/476504893_1270571391096206_688233240861535335_n.jpg" alt="Cute Cat 5" onclick="reviewImage(this.src)">
+    </div>
+
+    <div class="image-review" id="imageReview" onclick="closeReview()">
+        <img src="" id="reviewedImage">
+    </div>
+
+
+
+    <p class="message">Iloveyouuu mi one and only dearest bubbb koo😽✨🌷💗.</p>
+    
+
+    <script>
+        function reviewImage(src) {
+            document.getElementById('reviewedImage').src = src;
+            document.getElementById('imageReview').classList.add('active');
+        }
+
+        function closeReview() {
+            document.getElementById('imageReview').classList.remove('active');
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+
+    <audio autoplay loop>
+        <source src="assets/audio/love.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        body {
+            text-align: center;
+            background-color: #ffebee;
+            font-family: 'Patrick Hand', cursive;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #d32f2f;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+        }
+        .message {
+            font-size: 20px;
+            color: #444;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeIn 3s forwards 1s;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 4s forwards 2s;
+            max-width: 80%;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.1) rotate(-5deg);
+        }
+        .gallery img:active {
+            opacity: 0.6;
+        }
+        .intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: #d32f2f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            opacity: 1;
+            z-index: 10;
+        }
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            width: 0;
+            display: inline-block;
+            animation: typing 3s steps(40, end) forwards, blink 0.5s step-end infinite alternate;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart-emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.querySelector(".intro").style.display = "none";
+                document.querySelector(".gallery").style.opacity = "1";
+                document.querySelector("audio").play();
+                generateHearts();
+            }, 4000);
+        });
+
+        function generateHearts() {
+            const heartContainer = document.createElement("div");
+            heartContainer.classList.add("hearts");
+            document.body.appendChild(heartContainer);
+            
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.classList.add("heart-emoji");
+                heart.innerText = Math.random() > 0.5 ? "❤️" : "🐱";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 500);
+        }
+    </script>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="love-song.mp3" type="audio/mpeg">
+    </audio>
+    <div class="intro">
+        <span class="typing">Happy Valentine's Day, My Love! ❤</span>
+    </div>
+    <h1>Happy Valentine's Day, My Love! <span class="heart">❤</span></h1>
+    <p class="message">You are the most amazing person in my life, and I am so lucky to have you. Every moment with you is special, and I cherish our love forever.</p>
+    
+    <div class="gallery">
+        <img src="cat1.jpg" alt="Cute Cat 1" onclick="reviewImage(this.src)">
+        <img src="cat2.jpg" alt="Cute Cat 2" onclick="reviewImage(this.src)">
+        <img src="cat3.jpg" alt="Cute Cat 3" onclick="reviewImage(this.src)">
+        <img src="cat4.jpg" alt="Cute Cat 4" onclick="reviewImage(this.src)">
+        <img src="cat5.jpg" alt="Cute Cat 5" onclick="reviewImage(this.src)">
+    </div>
+</body>
+</html> -->
